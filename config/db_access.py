@@ -5,7 +5,7 @@ class DatabaseManager:
     """Provide methods and connection to the MongoDb database
     """
 
-    __CONNECTION_STRING = str.format("mongodb+srv://{}:{}@{}/business?retryWrites=true&w=majority", MONGODB_USER, MONGODB_PASSWORD, MONGODB_SERVER )
+    __CONNECTION_STRING = str.format("mongodb+srv://{}:{}@{}", MONGODB_USER, MONGODB_PASSWORD, MONGODB_SERVER)
     __instance = None
 
     @staticmethod
@@ -23,6 +23,7 @@ class DatabaseManager:
             DatabaseManager.__instance = self
             print(DatabaseManager.__CONNECTION_STRING)
             self.__client = MongoClient(DatabaseManager.__CONNECTION_STRING)
+
 
     def __get_collection(self, db_name, collection_name):
         """Generic method to connect to a given collection in a given database
