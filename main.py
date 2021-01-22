@@ -23,7 +23,6 @@ def route_default(name: str):
 # def route_default(name: str):
 
 #     response = requests.get(db.getInstance())
-#     content = json.loads(dumps(db.getInstance().get_country_by_name(name)))
 
 #     if response.status_code != 200:
 #         return jsonify({
@@ -32,6 +31,7 @@ def route_default(name: str):
 #         }), 500
 
 #     else :
+#         content = json.loads(dumps(db.getInstance().get_country_by_name(name)))
 #         return content
 
 
