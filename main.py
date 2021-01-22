@@ -14,9 +14,15 @@ def hello():
 
 
 @app.route("/api/request/<name>")
-def route_default(name: str):
+def route_request(name: str):
 
     content = json.loads(dumps(db.getInstance().get_country_by_name(name)))
+    return content
+
+@app.route("/api/add/<name>")
+def  route_add(name:str):
+
+    content = json.loads(dumps(db.getInstance().set_country(name)))
     return content
 
 # @app.route("/api/request/<name>")

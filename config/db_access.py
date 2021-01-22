@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 from config.ressources import *
+import random
 
 class DatabaseManager:
     """Provide methods and connection to the MongoDb database
@@ -44,4 +45,35 @@ class DatabaseManager:
         Returns:
             json: informations about the country
         """
+        return self.__get_collection('countries_project', 'countries').find_one({'Country': name})
+
+    def set_country(self, name):
+        """Add a new country to the databse with random informations
+        Args:
+            name (str): name of the country
+        Returns:
+            json: informations about the country
+        """
+
+        density = random.randint(10, 1000)
+        land_area = random.randint(100000, 1000000)
+        pop = random.randint(10000, 10000000)
+
+        # Density (P/Km²)	"119"
+        # Land Area (Km²)	"547557"
+        # Population (2020)	"65244628"
+        # _id	
+        # $oid	"60099b3652975e2bc055ed7d"
+
+        country={"Country": name, 
+                    "Density (P/Km\u00b2)": density, 
+                    "Land Area (Km\u00b2)": land_area, 
+                    "Population (2020)": pop, 
+                    # "_id": {
+                    #     "$oid": "60099b3652975e2bc055ed7d"
+                    # }
+                    }
+
+        self.__get_collection('countries_project', 'countries').insert_one(country)
+
         return self.__get_collection('countries_project', 'countries').find_one({'Country': name})
