@@ -46,7 +46,7 @@ class DatabaseManager:
         Returns:
             json: informations about the country
         """
-        return self.__get_collection('countries_project', 'countries').find_one({'Country': name})
+        return self.__get_collection('countries_project', 'countries').find_one({'country': name})
 
     def set_country(self, name):
         """Add a new country to the databse with random informations
@@ -61,13 +61,56 @@ class DatabaseManager:
         pop = random.randint(10000, 10000000)
         today = date.today()
 
-        country={"Country": name, 
-                    "Density (P/Km\u00b2)": density, 
-                    "Land Area (Km\u00b2)": land_area, 
-                    "Population (2020)": pop, 
-                    "Last Update" : str(today),
+        country={"country": name, 
+                    "density": density, 
+                    "area": land_area, 
+                    "pop": pop, 
+                    "last_update" : str(today),
                     }
 
         self.__get_collection('countries_project', 'countries').insert_one(country)
 
-        return self.__get_collection('countries_project', 'countries').find_one({'Country': name})
+        return self.__get_collection('countries_project', 'countries').find_one({'country': name})
+
+    def delete_country_by_name(self, name):
+        """Delete a country by its name.
+        Args:
+            name (str): name of the country
+        Returns:
+            json: confirmation message.
+        """
+
+        self.__get_collection('countries_project', 'countries').remove({'country': name})
+
+        return {"Message": "The country has been deleted."}
+
+
+    # def update_country_by_name(self, name, data):
+    #     """Update a country by its name.
+    #     Args:
+    #         name (str): name of the country
+    #         data (dictionnary): list of key/value to update
+    #     Returns:
+    #         json: updated country.
+    #     """
+    #     today = date.today()
+    #     update = {"$push": {"Last Update" : str(today)}, "$set" : data}
+                
+    #     self.__get_collection('countries_project', 'countries').update_one({'Country': name}, update, upsert=True)
+    #     return self.__get_collection('countries_project', 'countries').find_one({'Country': name})
+
+    def get_countries_class(self):
+
+        filter1 = {'density': {"$lt" : 50}}
+        filter2 = {'density': {"$gt" : 50, "$lt" : 133}}
+        filter3 = {'density': {"$gt" : 133, "$lt" : 350}}
+        filter4 = {'density': {"$gt" : 350}}
+
+        dict1 = self.__get_collection('countries_project', 'countries').find(filter1)
+        dict2 = self.__get_collection('countries_project', 'countries').find(filter2)
+        dict3 = self.__get_collection('countries_project', 'countries').find(filter3)
+        dict4 = self.__get_collection('countries_project', 'countries').find(filter4)
+
+
+        return {'Très peu denses' : dict1, 'Peu denses' : dict2, 'Densité intermédiaire' : dict3, 'Densément peuplés' : dict4}
+
