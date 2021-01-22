@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from config.ressources import *
-from datetime import date
 import random
+import datetime
 
 class DatabaseManager:
     """Provide methods and connection to the MongoDb database
@@ -59,13 +59,12 @@ class DatabaseManager:
         density = random.randint(10, 1000)
         land_area = random.randint(100000, 1000000)
         pop = random.randint(10000, 10000000)
-        today = date.today()
 
         country={"country": name, 
                     "density": density, 
                     "area": land_area, 
                     "pop": pop, 
-                    "last_update" : str(today),
+                    "last_update" : datetime.datetime.now(),
                     }
 
         self.__get_collection('countries_project', 'countries').insert_one(country)
