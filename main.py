@@ -2,9 +2,10 @@ from config import ressources, db_access
 from flask import Flask, jsonify
 from config.db_access import DatabaseManager as db
 import json
-import requests
 from bson.json_util import dumps
 from config.ressources import *
+from flask import request
+import ast
 
 app = Flask(__name__)
 
@@ -13,31 +14,38 @@ def hello():
     return {"welcome_message": "World"}
 
 
-@app.route("/api/request/<name>")
+@app.route("/api/request/<name>", methods=['GET'])
 def route_request(name: str):
 
     content = json.loads(dumps(db.getInstance().get_country_by_name(name)))
     return content
 
-@app.route("/api/add/<name>")
-def  route_add(name:str):
-
+@app.route("/api/add", methods=['POST'])
+def  route_add():
+    
+    name=(request.get_data().decode().split('=')[1])
     content = json.loads(dumps(db.getInstance().set_country(name)))
+
     return content
 
-@app.route("/api/remove/<name>")
-def  route_remove(name:str):
+@app.route("/api/remove", methods=['DELETE'])
+def  route_remove():
 
+    name=request.get_data().decode().split('=')[1]
     content = json.loads(dumps(db.getInstance().delete_country_by_name(name)))
     return content
 
-# @app.route("/api/update/<name><couple>")
-# def  route_edit(name:str, couple:dict):
+@app.route("/api/update", methods=["PUT"])
+def  route_edit():
 
-#     content = json.loads(dumps(db.getInstance().update_country_by_name(name, couple)))
-#     return content
+    name=request.form.get("name")
+    couple=ast.literal_eval(request.form.get("couple"))
 
-@app.route("/api/class")
+    content = json.loads(dumps(db.getInstance().update_country_by_name(name, couple)))
+    
+    return content
+
+@app.route("/api/class", methods=["GET"])
 def  route_categorize():
 
     content = json.loads(dumps(db.getInstance().get_countries_class()))
