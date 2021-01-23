@@ -39,16 +39,16 @@ Get a local copy up and running following these steps.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-* Run [main.py](https://github.com/Twizzle1997/client_roi/main.py) to start the app.  
-* Oppen [tests.ipynb](https://github.com/Twizzle1997/client_roi/tests.ipynb) to read the API tests and make new ones.  
+* Run [main.py](https://github.com/Twizzle1997/client_roi/blob/main/main.py) to start the app.  
+* Oppen [tests.ipynb](https://github.com/Twizzle1997/client_roi/blob/main/tests.ipynb) to read the API tests and make some new ones.  
 * The API will be launched on port 8080.
 
 ### Routes
-* ```/api/request/<name>``` (GET method) get information about a country.  
-* ```/api/add``` (POST method, <name:str>) add a fictive country to the database.    
-* ```/api/remove``` (DELETE method, <name:str>) delete a country of the dataset.  
-* ```/api/update``` (PUT method, <name:str><couple:str>) update informations about a country.  
-* ```/api/class``` (GET method) classifies all the database countries regarding their density rangs. 
+* ```/api/request/<name>``` *(**GET** method)* get information about a country.  
+* ```/api/add``` *(**POST** method, name:str)* add a fictive country to the database.    
+* ```/api/remove``` *(**DELETE** method, name:str)* delete a country of the dataset.  
+* ```/api/update``` *(**PUT** method, name:str, couple:str)* update informations about a country.  
+* ```/api/class``` *(**GET** method)* classifies all the database countries regarding their density rangs. 
 
 ### Settings
 * ```config > ressources.py``` contains the connection settings.   
