@@ -14,12 +14,14 @@ def hello():
     return {"welcome_message": "World"}
 
 
+# VISUALISATION D'UN PAYS.
 @app.route("/api/request/<name>", methods=['GET'])
 def route_request(name: str):
 
     content = json.loads(dumps(db.getInstance().get_country_by_name(name)))
     return content
 
+# AJOUT D'UN PAYS FICTIF.
 @app.route("/api/add", methods=['POST'])
 def  route_add():
     
@@ -28,6 +30,7 @@ def  route_add():
 
     return content
 
+# SUPPRESSION D'UN PAYS.
 @app.route("/api/remove", methods=['DELETE'])
 def  route_remove():
 
@@ -35,6 +38,7 @@ def  route_remove():
     content = json.loads(dumps(db.getInstance().delete_country_by_name(name)))
     return content
 
+# MISE A JOUR D'UN PAYS.
 @app.route("/api/update", methods=["PUT"])
 def  route_edit():
 
@@ -42,9 +46,10 @@ def  route_edit():
     couple=ast.literal_eval(request.form.get("couple"))
 
     content = json.loads(dumps(db.getInstance().update_country_by_name(name, couple)))
-    
+
     return content
 
+# CLASSIFICATION DES PAYS.
 @app.route("/api/class", methods=["GET"])
 def  route_categorize():
 

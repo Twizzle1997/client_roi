@@ -71,7 +71,7 @@ class DatabaseManager:
 
         self.__get_collection('countries_project', 'countries').insert_one(country)
 
-        return self.__get_collection('countries_project', 'countries').find_one({'country': name})
+        return self.get_country_by_name(name)
 
     def delete_country_by_name(self, name):
         """Delete a country by its name.
@@ -101,7 +101,7 @@ class DatabaseManager:
                 
         self.__get_collection('countries_project', 'countries').update_one(asked, [values, date])
 
-        return self.__get_collection('countries_project', 'countries').find_one({'country': name})
+        return self.get_country_by_name(name)
 
     def get_countries_class(self):
         """Classifies the countries regarding their density rank. 
