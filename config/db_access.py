@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from config.ressources import *
 import random
 import datetime
-import ast
+import json
 
 class DatabaseManager:
     """Provide methods and connection to the MongoDb database
@@ -48,7 +48,12 @@ class DatabaseManager:
             json: informations about the country.
         """
 
-        return self.__get_collection('countries_project', 'countries').find_one({'country': name})
+        response = self.__get_collection('countries_project', 'countries').find_one({'country': name})
+        
+        if response is None:
+            response={"Message": "This country doesn't exist."}
+
+        return response
 
     def set_country(self, name):
         """Add a new country to the databse with random informations.
