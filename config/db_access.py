@@ -2,7 +2,6 @@ from pymongo import MongoClient
 from config.ressources import *
 import random
 import datetime
-import json
 
 class DatabaseManager:
     """Provide methods and connection to the MongoDb database
@@ -49,7 +48,7 @@ class DatabaseManager:
         """
 
         response = self.__get_collection('countries_project', 'countries').find_one({'country': name})
-        
+
         if response is None:
             response={"Message": "This country doesn't exist."}
 
