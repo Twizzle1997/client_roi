@@ -48,7 +48,7 @@ Get a local copy up and running following these steps.
 * ```/api/add``` *(**POST** method, name:str)* add a fictive country to the database.    
 * ```/api/remove``` *(**DELETE** method, name:str)* delete a country of the dataset.  
 * ```/api/update``` *(**PUT** method, name:str, couple:str)* update informations about a country.  
-* ```/api/class``` *(**GET** method)* classifies all the database countries regarding their density rangs. 
+* ```/api/class``` *(**GET** method)* classifies all the database countries regarding their density ranks. 
 
 ### Settings
 * ```config > ressources.py``` contains the connection settings.   
