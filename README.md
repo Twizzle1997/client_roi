@@ -51,6 +51,6 @@ Get a local copy up and running following these steps.
 * ```/api/class``` *(**GET** method)* classifies all the database countries regarding their density ranks. 
 
 ### Settings
-* ```config > ressources.py``` contains the connection settings.   
-* ```config > db_access.py``` provides the methods and connection to the MongoDb database.
+* [config > ressources.py](https://github.com/Twizzle1997/client_roi/blob/main/config/ressources.py) contains the connection settings.   
+* [config > db_access.py](https://github.com/Twizzle1997/client_roi/blob/main/config/db_access.py) provides the methods and connection to the MongoDb database.
 
