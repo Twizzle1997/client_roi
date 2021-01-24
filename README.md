@@ -38,9 +38,6 @@ Get a local copy up and running following these steps.
     ```sh
     pip install -r requirements.txt
     ```
-    ```sh
-    conda create --name <env_name> --file requirements.txt
-    ```
 
 
 <!-- USAGE EXAMPLES -->
