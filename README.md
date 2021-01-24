@@ -27,13 +27,20 @@ Get a local copy up and running following these steps.
 
 ### Installation
 
-1. Clone the repository
+1. Clone the repository :
 
     ```sh
     git clone https://github.com/Twizzle1997/client_roi
     ```
     
 2. Create a .env file with the two variables : ```MONGO_USER``` and ```MONGO_PASSWORD```  
+3. Install the requirements :
+    ```sh
+    pip install -r requirements.txt
+    ```
+    ```sh
+    conda create --name <env_name> --file requirements.txt
+    ```
 
 
 <!-- USAGE EXAMPLES -->
