@@ -48,7 +48,7 @@ Get a local copy up and running following these steps.
 * The API will be launched on port 8080.
 
 ### Routes
-* ```/api/request/<name>``` *(**GET** method)* get information about a country.  
+* ```/api/request/<name>``` *(**GET** method)* get informations about a country.  
 * ```/api/add``` *(**POST** method, name:str)* add a fictive country to the database.    
 * ```/api/remove``` *(**DELETE** method, name:str)* delete a country of the dataset.  
 * ```/api/update``` *(**PUT** method, name:str, couple:str)* update informations about a country.  
